@@ -1,0 +1,14 @@
+.DS_Store
+
+# Ignore bundler lock file
+/Gemfile.lock
+
+# Ignore pkg folder
+/pkg
+
+# Ignore tmp
+/tmp
+
+# Ignore vendor
+/vendor
+.bundle
