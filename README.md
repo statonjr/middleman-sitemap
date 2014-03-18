@@ -21,11 +21,7 @@ activate :sitemap
 
 ## Build & Dependency Status
 
-[![Gem Version](https://badge.fury.io/rb/middleman-blog.png)][gem]
-[![Build Status](https://travis-ci.org/middleman/middleman-blog.png)][travis]
-[![Dependency Status](https://gemnasium.com/middleman/middleman-blog.png?travis)][gemnasium]
-[![Code Quality](https://codeclimate.com/github/middleman/middleman-blog.png)][codeclimate]
-[![Code Coverage](https://coveralls.io/repos/middleman/middleman-blog/badge.png?branch=master)][coveralls]
+[![Build Status](https://travis-ci.org/statonjr/middleman-sitemap.png)][travis]
 
 ## Community
 
@@ -39,7 +35,7 @@ The best way to get quick responses to your issues and swift fixes to your bugs 
 
 ## How to Run Cucumber Tests
 
-1. Checkout Repository: `git clone https://github.com/middleman/middleman-blog.git`
+1. Checkout Repository: `git clone https://github.com/statonjr/middleman-sitemap.git`
 2. Install Bundler: `gem install bundler`
 3. Run `bundle install` inside the project root to install the gem dependencies.
 4. Run test cases: `bundle exec rake test`
