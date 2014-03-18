@@ -46,8 +46,8 @@ The best way to get quick responses to your issues and swift fixes to your bugs 
 
 ## License
 
-Copyright (c) 2014 Larry Staton Jr.. MIT Licensed, see [LICENSE] for details.
+Copyright (c) 2014 Larry Staton Jr. MIT Licensed, see [LICENSE] for details.
 
 [middleman]: http://middlemanapp.com
 [travis]: http://travis-ci.org/statonjr/middleman-sitemap
-[LICENSE]: https://github.com/statonjr/middleman-sitemap/blob/master/LICENSE.md
+[LICENSE]: https://github.com/statonjr/middleman-sitemap/blob/master/LICENSE
