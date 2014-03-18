@@ -3,11 +3,11 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "middleman-sitemap"
-  s.version     = "0.0.1"
+  s.version     = "0.0.2"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Larry Staton Jr."]
   s.email       = ["larry@larrystaton.com"]
-  s.homepage    = "http://bitbucket.org/statonjr/middleman-sitemap"
+  s.homepage    = "https://github.com/statonjr/middleman-sitemap"
   s.summary     = %q{Builds a sitemap.xml for your site}
   s.description = %q{Builds a sitemap.xml for your site}
 
