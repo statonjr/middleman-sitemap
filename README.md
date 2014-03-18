@@ -46,13 +46,8 @@ The best way to get quick responses to your issues and swift fixes to your bugs 
 
 ## License
 
-Copyright (c) 2010-2013 Thomas Reynolds. MIT Licensed, see [LICENSE] for details.
+Copyright (c) 2014 Larry Staton Jr.. MIT Licensed, see [LICENSE] for details.
 
 [middleman]: http://middlemanapp.com
-[gem]: https://rubygems.org/gems/middleman-blog
-[travis]: http://travis-ci.org/middleman/middleman-blog
-[gemnasium]: https://gemnasium.com/middleman/middleman-blog
-[codeclimate]: https://codeclimate.com/github/middleman/middleman-blog
-[coveralls]: https://coveralls.io/r/middleman/middleman-blog
-[rubydoc]: http://rubydoc.info/github/middleman/middleman-blog
-[LICENSE]: https://github.com/middleman/middleman-blog/blob/master/LICENSE.md
+[travis]: http://travis-ci.org/statonjr/middleman-sitemap
+[LICENSE]: https://github.com/statonjr/middleman-sitemap/blob/master/LICENSE.md
