@@ -19,6 +19,27 @@ If you already have a Middleman project: Add `gem "middleman-sitemap"` to your `
 activate :sitemap
 ```
 
+## Options
+
+### GZIP
+
+GZIP is on by default, so the extension will produce a sitemap.xml.gz file in addition to the sitemap.xml file.
+
+If you don't want to create a GZIP file, pass `false` during activation.
+
+```
+activate :sitemap, :gzip => false
+```
+
+### Hostname
+
+The default hostname is set to "http://www.example.com". You probably want to change this to your hostname.
+
+```
+activate :sitemap, :hostname => "http://www.apple.com"
+```
+
+
 ## Build & Dependency Status
 
 [![Build Status](https://travis-ci.org/statonjr/middleman-sitemap.png)][travis]
