@@ -17,7 +17,7 @@ class Sitemap < ::Middleman::Extension
     # puts options.my_option
   end
 
-  def after_build
+  def after_build(builder)
     require 'erb'
     @pages = app.sitemap.resources.find_all{ |p| p.source_file.match(/\.html/) }
     @hostname = options.hostname
@@ -25,8 +25,10 @@ class Sitemap < ::Middleman::Extension
     sitemap = template.render(self)
     outfile = File.join(app.build_dir, "sitemap.xml")
     File.open(outfile, 'w') {|f| f.write(sitemap) }
+    builder.say_status :create, "build/sitemap.xml"
     if options.gzip
       gzip_file(File.read(outfile))
+      builder.say_status :create, "build/sitemap.xml.gz"
     end
   end
 
