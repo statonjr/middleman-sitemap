@@ -11,25 +11,69 @@ class Sitemap < ::Middleman::Extension
     super
 
     # Require libraries only when activated
-    # require 'necessary/library'
+    require 'erb'
 
     # set up your extension
     # puts options.my_option
   end
 
   def after_build(builder)
-    require 'erb'
-    @pages = app.sitemap.resources.find_all{ |p| p.source_file.match(/\.html/) }
+    @builder = builder
+    pages = app.sitemap.resources.find_all{ |p| p.source_file.match(/\.html$/) }
+
+    if pages.count > 50000
+      sitemaps = build_multiple_sitemaps(pages)
+    else
+      sitemaps = [build_sitemap("sitemap.xml", pages)]
+    end
+
+    if options.gzip
+      sitemaps.each do |sitemap|
+        gzip_file(File.read(sitemap))
+        @builder.say_status :create, "#{sitemap}.gz"
+      end
+    end
+  end
+
+  def build_sitemap_index(sitemaps)
+    @hostname = options.hostname
+    @sitemaps = sitemaps
+    template = Tilt::ERBTemplate.new(File.expand_path(File.join("#{File.dirname(__FILE__)}", "../templates/sitemapindex.xml.erb")))
+    sitemap = template.render(self)
+
+    outfile = File.join(app.build_dir, "sitemap.xml")
+    File.open(outfile, 'w') {|f| f.write(sitemap) }
+
+    @builder.say_status :create, "build/sitemap.xml"
+
+    return "build/sitemap.xml"
+  end
+
+  def build_sitemap(name, pages)
+    @pages = pages
     @hostname = options.hostname
     template = Tilt::ERBTemplate.new(File.expand_path(File.join("#{File.dirname(__FILE__)}", "../templates/sitemap.xml.erb")))
     sitemap = template.render(self)
-    outfile = File.join(app.build_dir, "sitemap.xml")
+
+    outfile = File.join(app.build_dir, name)
     File.open(outfile, 'w') {|f| f.write(sitemap) }
-    builder.say_status :create, "build/sitemap.xml"
-    if options.gzip
-      gzip_file(File.read(outfile))
-      builder.say_status :create, "build/sitemap.xml.gz"
+
+    @builder.say_status :create, "build/#{name}"
+
+    return "build/#{name}"
+  end
+
+  def build_multiple_sitemaps(pages)
+    built_sitemaps = []
+    total_sitemaps = (pages.count / 50000.0).ceil
+    pages_per_sitemap = (50000.0 / total_sitemaps).ceil
+    built_sitemaps << build_sitemap_index(total_sitemaps)
+    1.upto(total_sitemaps) do |i|
+      sitemap_pages = pages[((i - 1) * pages_per_sitemap)...(i * pages_per_sitemap)]
+      built_sitemaps << build_sitemap("sitemap#{i}.xml", sitemap_pages)
     end
+
+    return built_sitemaps
   end
 
   def gzip_file(sitemap)

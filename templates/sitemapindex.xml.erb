@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <% 1.upto(@sitemaps) do |idx| %>
+  <sitemap>
+    <loc><%= @hostname %>/sitemap<%= idx %>.xml.gz</loc>
+    <lastmod><%= Date.today.to_time.iso8601 %></lastmod>
+  </sitemap>
+  <% end %>
+</sitemapindex>
