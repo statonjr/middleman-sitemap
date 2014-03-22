@@ -2,6 +2,8 @@
 
 `middleman-sitemap` is an extension for the [Middleman] static site generator that adds sitemap functionality. By default, the sitemap is GZIP'd.
 
+For large sites, `middleman-sitemap` will create a sitemap index file and multiple sitemaps as suggested by [Google](https://support.google.com/webmasters/answer/183668?hl=en&ref_topic=4581190).
+
 ## Installation
 
 If you're just getting started, install the `middleman` gem and generate a new project:
@@ -55,6 +57,8 @@ Github Issues are used for managing bug reports and feature requests. If you run
 The best way to get quick responses to your issues and swift fixes to your bugs is to submit detailed bug reports, include test cases and respond to developer questions in a timely manner. Even better, if you know Ruby, you can submit [Pull Requests](https://help.github.com/articles/using-pull-requests) containing Cucumber Features which describe how your feature should work or exploit the bug you are submitting.
 
 ## How to Run Cucumber Tests
+
+*WARNING*: Support for multiple sitemaps means that Middleman has to build 51000 pages before creating the multiple sitemaps which, on my machine, takes almost 5 minutes per scenario. The multiple-sitemap features have been tagged with `@slow`.
 
 1. Checkout Repository: `git clone https://github.com/statonjr/middleman-sitemap.git`
 2. Install Bundler: `gem install bundler`
