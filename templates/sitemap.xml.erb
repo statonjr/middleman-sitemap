@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <% @pages.each do |p| %>
   <url>
-    <loc><%= @hostname %><%= p.url.gsub(/\/$/, '') %></loc>
+    <loc><%= urlencode(@hostname + p.url).gsub(/\/$/,'') %></loc>
     <lastmod><%= Date.today.to_time.iso8601 %></lastmod>
     <changefreq><%= p.data.changefreq || 'weekly' %></changefreq>
     <priority><%= p.data.priority || '0.5' %></priority>
