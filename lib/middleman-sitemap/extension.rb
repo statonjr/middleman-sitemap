@@ -30,7 +30,7 @@ class Sitemap < ::Middleman::Extension
 
     if options.gzip
       sitemaps.each do |sitemap|
-        gzip_file(File.read(sitemap))
+        gzip_file(sitemap)
         @builder.say_status :create, "#{sitemap}.gz" if @builder
       end
     end
@@ -79,7 +79,7 @@ class Sitemap < ::Middleman::Extension
 
   def gzip_file(sitemap)
     require 'zlib'
-    File.open(File.join(@app.build_dir, "sitemap.xml.gz"), 'wb') do |f|
+    File.open("#{sitemap}.gz", 'wb') do |f|
       gz = Zlib::GzipWriter.new(f, Zlib::BEST_COMPRESSION)
       gz.write sitemap
       gz.close
