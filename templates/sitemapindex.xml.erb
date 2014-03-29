@@ -2,7 +2,7 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <% 1.upto(@sitemaps) do |idx| %>
   <sitemap>
-    <loc><%= @hostname %>/sitemap<%= idx %>.xml.gz</loc>
+    <loc><%= @hostname %>/sitemap<%= idx %><%= @ext %></loc>
     <lastmod><%= Date.today.to_time.iso8601 %></lastmod>
   </sitemap>
   <% end %>

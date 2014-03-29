@@ -39,6 +39,7 @@ class Sitemap < ::Middleman::Extension
   def build_sitemap_index(sitemaps)
     @hostname = options.hostname
     @sitemaps = sitemaps
+    @ext = options.gzip ? ".xml.gz" : ".xml"
     template = Tilt::ERBTemplate.new(File.expand_path(File.join("#{File.dirname(__FILE__)}", "../../templates/sitemapindex.xml.erb")))
     sitemap = template.render(self)
 
