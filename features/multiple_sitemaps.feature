@@ -13,7 +13,7 @@ Feature: Multiple sitemaps for large sites
       | build/sitemap1.xml |
       | build/sitemap2.xml |
 
-  @slow @announce
+  @slow
   Scenario: Sitemap index should have proper content
     Given a successfully built app at "large-site-app"
     When I cd to "build"
@@ -21,7 +21,7 @@ Feature: Multiple sitemaps for large sites
     And the file "sitemap.xml" should contain "http://www.example.com/sitemap1.xml.gz"
     And the file "sitemap.xml" should contain "http://www.example.com/sitemap2.xml.gz"
 
-  @slow @announce
+  @slow
   Scenario: Sitemap index should have proper URLs when GZIP is false
     Given a fixture app "large-site-app"
     And a file named "config.rb" with:
@@ -34,7 +34,7 @@ Feature: Multiple sitemaps for large sites
     And the file "sitemap.xml" should contain "http://www.example.com/sitemap1.xml"
     And the file "sitemap.xml" should contain "http://www.example.com/sitemap2.xml"
 
-  @slow @announce
+  @slow
   Scenario: Sitemaps should have proper content
     Given a successfully built app at "large-site-app"
     When I cd to "build"
