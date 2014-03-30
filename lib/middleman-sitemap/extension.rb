@@ -36,9 +36,9 @@ class Sitemap < ::Middleman::Extension
     end
   end
 
-  def build_sitemap_index(sitemaps)
+  def build_sitemap_index(number_of_sitemaps)
     @hostname = options.hostname
-    @sitemaps = sitemaps
+    @sitemaps = number_of_sitemaps
     @ext = options.gzip ? ".xml.gz" : ".xml"
     template = Tilt::ERBTemplate.new(File.expand_path(File.join("#{File.dirname(__FILE__)}", "../../templates/sitemapindex.xml.erb")))
     sitemap = template.render(self)
@@ -80,9 +80,10 @@ class Sitemap < ::Middleman::Extension
 
   def gzip_file(sitemap)
     require 'zlib'
+    content = File.read(sitemap)
     File.open("#{sitemap}.gz", 'wb') do |f|
       gz = Zlib::GzipWriter.new(f, Zlib::BEST_COMPRESSION)
-      gz.write sitemap
+      gz.write content
       gz.close
     end
   end
