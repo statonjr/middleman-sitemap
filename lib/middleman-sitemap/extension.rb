@@ -89,14 +89,9 @@ class Sitemap < ::Middleman::Extension
   end
 
   # Returns a URL with proper HTML entities
-  def urlencode(url)
-    purl = URI.parse(url)
-    path_match = purl.path.match(/\/([^.]+)/)
-    if path_match
-      escaped_path = app.escape_html(path_match[1])
-      purl.path = "/#{escaped_path}.html"
-    end
-    return purl.to_s
+  def encode(path)
+    str = path.split("/").map { |f| app.escape_html(f) }.join("/")
+    return "#{str}.html"
   end
 
 end
