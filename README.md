@@ -21,6 +21,8 @@ If you already have a Middleman project: Add `gem "middleman-sitemap"` to your `
 activate :sitemap
 ```
 
+By default, `middleman-sitemap` will create a sitemap with `loc1 elements. As per the [protocol](http://www.sitemaps.org/protocol.html), the `lastmod`, `changefreq`, and `priority` elements are optional. To include these elements in your sitemap, you MUST include them in the front matter of your page.
+
 ## Options
 
 ### GZIP

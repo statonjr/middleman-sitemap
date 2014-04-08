@@ -54,7 +54,8 @@ class Sitemap < ::Middleman::Extension
   def build_sitemap(name, pages)
     @pages = pages
     @hostname = options.hostname
-    template = Tilt::ERBTemplate.new(File.expand_path(File.join("#{File.dirname(__FILE__)}", "../../templates/sitemap.xml.erb")))
+    templates_path = File.expand_path(File.join("#{File.dirname(__FILE__)}", "../../templates/sitemap.xml.erb"))
+    template = Tilt::ERBTemplate.new(templates_path, 0, :trim => '>')
     sitemap = template.render(self)
 
     outfile = File.join(app.build_dir, name)
@@ -91,7 +92,7 @@ class Sitemap < ::Middleman::Extension
   # Returns a URL with proper HTML entities
   def encode(path)
     str = path.split("/").map { |f| app.escape_html(f) }.join("/")
-    return "#{str}.html"
+    return str
   end
 
 end

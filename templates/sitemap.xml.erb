@@ -3,9 +3,12 @@
 <% @pages.each do |p| %>
   <url>
     <loc><%= @hostname + encode(p.url).gsub(/\/$/,'') %></loc>
-    <lastmod><%= Date.today.to_time.iso8601 %></lastmod>
-    <changefreq><%= p.data.changefreq || 'weekly' %></changefreq>
-    <priority><%= p.data.priority || '0.5' %></priority>
+<% if p.data.lastmod %>    <lastmod><%= p.data.lastmod %></lastmod>
+<% end %>
+<% if p.data.changefreq %>    <changefreq><%= p.data.changefreq %></changefreq>
+<% end %>
+<% if p.data.priority %>    <priority><%= p.data.priority %></priority>
+<% end %>
   </url>
 <% end %>
 </urlset>
