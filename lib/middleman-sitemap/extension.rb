@@ -46,9 +46,9 @@ class Sitemap < ::Middleman::Extension
     outfile = File.join(app.build_dir, "sitemap.xml")
     File.open(outfile, 'w') {|f| f.write(sitemap) }
 
-    @builder.say_status :create, "build/sitemap.xml"
+    @builder.say_status :create, "#{app.build_dir}/sitemap.xml"
 
-    return "build/sitemap.xml"
+    return "#{app.build_dir}/sitemap.xml"
   end
 
   def build_sitemap(name, pages)
@@ -61,9 +61,9 @@ class Sitemap < ::Middleman::Extension
     outfile = File.join(app.build_dir, name)
     File.open(outfile, 'w') {|f| f.write(sitemap) }
 
-    @builder.say_status :create, "build/#{name}"
+    @builder.say_status :create, "#{app.build_dir}/#{name}"
 
-    return "build/#{name}"
+    return "#{app.build_dir}/#{name}"
   end
 
   def build_multiple_sitemaps(pages)
