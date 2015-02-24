@@ -20,7 +20,7 @@ class Sitemap < ::Middleman::Extension
   end
 
   def generate_sitemap
-    pages = app.sitemap.resources.find_all{ |p| p.ext == ".html" }
+    pages = get_pages
 
     if pages.count > 50000
       sitemaps = build_multiple_sitemaps(pages)
@@ -93,6 +93,12 @@ class Sitemap < ::Middleman::Extension
   def encode(path)
     str = path.split("/").map { |f| app.escape_html(f) }.join("/")
     return str
+  end
+
+  private
+
+  def get_pages
+    app.sitemap.resources.find_all { |p| p.ext == ".html" && !p.data.ignore }
   end
 
 end
