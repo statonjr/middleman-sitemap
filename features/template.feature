@@ -23,4 +23,9 @@ Feature: Default template
   Scenario: Page with relevant sitemap front matter should show up in sitemap
     Given a successfully built app at "sitemap-frontmatter-app"
     When I cd to "build"
-    Then the file "sitemap.xml" should contain "<priority>" 
+    Then the file "sitemap.xml" should contain "<priority>"
+
+  Scenario: Page with ignore frontmatter variable should not show up in sitemap
+    Given a successfully built app at "sitemap-frontmatter-app"
+    When I cd to "build"
+    Then the file "sitemap.xml" should not contain "<loc>http://www.example.com/private.html</loc>"
