@@ -33,7 +33,7 @@ class Sitemap < ::Middleman::Extension
     if options.gzip
       sitemaps.each do |sitemap|
         gzip_file(sitemap)
-        @builder.say_status :create, "#{sitemap}.gz" if @builder
+        @builder.thor.say_status :create, "#{sitemap}.gz" if @builder
       end
     end
   end
@@ -45,12 +45,12 @@ class Sitemap < ::Middleman::Extension
     template = Tilt::ERBTemplate.new(File.expand_path(File.join("#{File.dirname(__FILE__)}", "../../templates/sitemapindex.xml.erb")))
     sitemap = template.render(self)
 
-    outfile = File.join(app.build_dir, "sitemap.xml")
+    outfile = File.join(app.config.build_dir, "sitemap.xml")
     File.open(outfile, 'w') {|f| f.write(sitemap) }
 
-    @builder.say_status :create, "#{app.build_dir}/sitemap.xml"
+    @builder.thor.say_status :create, "#{app.config.build_dir}/sitemap.xml"
 
-    return "#{app.build_dir}/sitemap.xml"
+    return "#{app.config.build_dir}/sitemap.xml"
   end
 
   def build_sitemap(name, pages)
@@ -60,12 +60,12 @@ class Sitemap < ::Middleman::Extension
     template = Tilt::ERBTemplate.new(templates_path, 0, :trim => '>')
     sitemap = template.render(self)
 
-    outfile = File.join(app.build_dir, name)
+    outfile = File.join(app.config.build_dir, name)
     File.open(outfile, 'w') {|f| f.write(sitemap) }
 
-    @builder.say_status :create, "#{app.build_dir}/#{name}"
+    @builder.thor.say_status :create, "#{app.config.build_dir}/#{name}"
 
-    return "#{app.build_dir}/#{name}"
+    return "#{app.config.build_dir}/#{name}"
   end
 
   def build_multiple_sitemaps(pages)
