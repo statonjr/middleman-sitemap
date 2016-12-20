@@ -3,6 +3,8 @@ class Sitemap < ::Middleman::Extension
   option :gzip, true, 'Whether or not to GZIP the resulting file'
   option :hostname, "http://www.example.com", "The hostname for your website"
 
+  include Padrino::Helpers
+
   def initialize(app, options_hash={}, &block)
     # Call super to build options from the options_hash
     super
@@ -91,7 +93,7 @@ class Sitemap < ::Middleman::Extension
 
   # Returns a URL with proper HTML entities
   def encode(path)
-    str = path.split("/").map { |f| app.escape_html(f) }.join("/")
+    str = path.split("/").map { |f| h(f) }.join('/')
     return str
   end
 
