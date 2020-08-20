@@ -100,7 +100,7 @@ class Sitemap < ::Middleman::Extension
   private
 
   def get_pages
-    app.sitemap.resources.find_all { |p| p.ext == ".html" && !p.data.ignore }
+    app.sitemap.resources.to_a.find_all { |p| p.ext == ".html" && !p.data.ignore }
   end
 
 end
